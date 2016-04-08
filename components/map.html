@@ -1,0 +1,53 @@
+
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+
+<dom-module id="map-element">
+	<template>
+		<style>
+			html, body {
+				height: 100%;
+				margin: 0;
+				padding: 0;
+			}
+			#map {
+				height: 100%;
+				width: 100%;
+			}
+		</style>
+
+		<div id="map"></div>
+
+	</template>
+
+	<script>
+		var map;
+		Polymer({
+			is: "map-element",
+			ready: function(){
+
+				initMap(this.lat, this.lng);
+			},
+			properties: {
+				lat: {
+					type: Number,
+					value: 39
+				},
+				lng: {
+					type: Number,
+					value: -122
+				}
+			}
+		});
+
+		var initMap = function(lat, lng){
+			map = new google.maps.Map(document.getElementById('map'), {
+				center: {lat: lat, lng: lng},
+				zoom: 8
+			});
+		}
+
+	</script>
+
+</dom-module>
