@@ -1,0 +1,22 @@
+{
+  "name": "cyclevanmvp",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Melissa Nunes nunes.melissa.m@gmail.com"
+  ],
+  "license": "GNU",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.4.0"
+  }
+}
