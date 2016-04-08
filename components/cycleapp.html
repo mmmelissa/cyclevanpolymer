@@ -1,0 +1,31 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/components/map.html">
+<link rel="import" href="/components/legend.html">
+
+<dom-module id="cycle-app">
+	<template>
+		<style>
+			#main{
+				height: 100%;
+				background-color: greenyellow;
+			}
+			:host{
+				--legend-position: absolute;
+				--legend-top: 0;
+				--legend-right: 0;
+				--legend-height: 100%;
+				--legend-width: 200px;
+				--map-width: calc(100% - 200px);
+			}
+		</style>
+		<div id="main">
+			<map-element lat="49" lng="-123"></map-element>
+			<legend-element></legend-element>
+		</div>
+	</template>
+	<script>
+		Polymer({
+			is: "cycle-app"
+		});
+	</script>
+</dom-module>

@@ -1,0 +1,24 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<dom-module id="legend-element">
+	<style>
+		.legend{
+
+			background-color: mediumaquamarine;
+			width: var(--legend-width, 150px);
+			height: var(--legend-height, 100%);
+			position: var(--legend-position, static);
+			top: var(--legend-top);
+			bottom: var(--legend-bottom);
+			left: var(--legend-left);
+			right: var(--legend-right);
+		}
+	</style>
+	<template>
+		<div class="legend">legend</div>
+	</template>
+	<script>
+		Polymer({
+			is:'legend-element'
+		});
+	</script>
+</dom-module>
