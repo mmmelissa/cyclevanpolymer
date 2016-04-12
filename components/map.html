@@ -1,4 +1,5 @@
 <link rel="import" href="/bower_components/polymer/polymer.html">
+<script src="/bower_components/underscore/underscore-min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js"></script>
 
 <dom-module id="map-element">
@@ -19,7 +20,7 @@
 		Polymer({
 			is: 'map-element',
 			attached: function(){
-				initMap(this.lat, this.lng);
+				this._initMap();
 			},
 			properties: {
 				lat: {
@@ -29,18 +30,40 @@
 				lng: {
 					type: Number,
 					value: -122
+				},
+				data: {
+					type: Array,
+					value: [],
+					observer: '_addLayers'//does this work?
 				}
+			},
+			_initMap: function(){
+				map = new google.maps.Map(document.getElementById('map'), {
+					center: {lat: this.lat, lng: this.lng},
+					zoom: 8
+				});
+				this._addLayers();
+			},
+			_addLayers: function(){
+				console.log("here")
+				if(map){
+					console.log("ismap", this.data)
+					var addLayer = this._addLayer;
+					_.each(this.data, function(layer){
+						addLayer(layer)
+					})
+
+				}
+
+			},
+			_addLayer: function(layer){
+				if(layer.isVisible){
+					this[layer.id] = new google.maps.KmlLayer(layer.src);
+					this[layer.id].setMap(map);
+				}
+
 			}
 		});
-
-		var initMap = function(lat, lng){
-			console.log("here", document.getElementById('map'));
-			map = new google.maps.Map(document.getElementById('map'), {
-				center: {lat: lat, lng: lng},
-				zoom: 8
-			});
-		}
-
 	</script>
 
 </dom-module>

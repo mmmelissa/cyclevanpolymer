@@ -1,4 +1,6 @@
 <link rel="import" href="/bower_components/polymer/polymer.html">
+<!--<link rel="import" href="/components/legendItem.html">-->
+
 <dom-module id="legend-element">
 	<style>
 		.legend{
@@ -14,11 +16,42 @@
 		}
 	</style>
 	<template>
-		<div class="legend">legend</div>
+		<div class="legend">legend
+			<template is="dom-repeat" id="menu" items="{{data}}">
+				<!--<legend-item name="{{item.id}}" checked="{{item.isVisible}}"></legend-item>-->
+				<div>
+					<input type="checkbox" name="{{item.id}}" checked="{{item.isVisible}}" on-tap="_checkboxOnClickHandler">
+					<span>{{item.id}}</span>
+				</div>
+			</template>
+		</div>
 	</template>
 	<script>
 		Polymer({
-			is:'legend-element'
+			is:'legend-element',
+			attached: function(){
+
+			},
+			data: {
+				type: Array,
+				value: []
+			},
+			properties: {
+				data: {
+					type: Array,
+					value: [],
+					observer: '_x'//observer doesnt work?
+				}
+			},
+			_checkboxOnClickHandler: function(e){
+				//having this event in the legend element rather than a legendItem element allows us to access the e.model property that dom-repeat attaches to events (and allows normal functioning of the data syncing???)
+				var model = e.model;
+				model.set('item.isVisible', e.target.checked)
+				console.log(model.item)
+			},
+			_x: function(){
+				console.log("x")
+			}
 		});
 	</script>
 </dom-module>

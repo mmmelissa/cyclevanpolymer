@@ -1,0 +1,44 @@
+<!--//this file is not currently used-->
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<dom-module id="legend-item">
+	<style>
+
+	</style>
+	<template>
+		<div>
+			<input type="checkbox" name="{{name}}" checked="{{checked}}" on-tap="_checkboxOnClickHandler">
+			<span>{{name}}</span>
+		</div>
+	</template>
+	<script>
+		Polymer({
+			is:'legend-item',
+			attached: function(){
+
+			},
+			data: {
+				type: Array,
+				value: []
+			},
+			properties: {
+				name: {
+					type: String,
+					value: ''
+				},
+				checked: {
+					type: Boolean,
+					value: false
+				}
+			},
+			_checkboxOnClickHandler: function(e){
+				console.log('onclick', e)
+				var model = e.model;
+				console.log(model)
+				//shot in the dark - maybe we need to strong arm checked into changing manually???
+
+
+
+			}
+		});
+	</script>
+</dom-module>
