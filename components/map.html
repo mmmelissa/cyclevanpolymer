@@ -22,6 +22,7 @@
 			attached: function(){
 				this._initMap();
 			},
+
 			properties: {
 				lat: {
 					type: Number,
@@ -33,10 +34,14 @@
 				},
 				data: {
 					type: Array,
-					value: [],
-					observer: '_addLayers'//does this work?
+					value: []
 				}
 			},
+
+			observers: [
+				'_x(data.*)'
+			],
+
 			_initMap: function(){
 				map = new google.maps.Map(document.getElementById('map'), {
 					center: {lat: this.lat, lng: this.lng},
@@ -45,9 +50,7 @@
 				this._addLayers();
 			},
 			_addLayers: function(){
-				console.log("here")
 				if(map){
-					console.log("ismap", this.data)
 					var addLayer = this._addLayer;
 					_.each(this.data, function(layer){
 						addLayer(layer)
@@ -62,6 +65,10 @@
 					this[layer.id].setMap(map);
 				}
 
+			},
+			_x: function(newValue){
+				//these types of observers dont get sent old values like observers attached inside the properties object.
+				console.log("map observer", newValue)
 			}
 		});
 	</script>

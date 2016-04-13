@@ -33,12 +33,8 @@
 						{name:'Skytrain', src:'http://data.vancouver.ca/download/kml/rapid_transit_line.kmz', id:'skytrain', isVisible: true},
 						{name:'Skytrain Stations', src:'http://data.vancouver.ca/download/kml/rapid_transit_stations.kmz', id:'skytrainStations', isVisible: true},
 						{name:'Official Bike Routes', src:'http://data.vancouver.ca/download/kml/bikeways.kmz', id:'bikeRoutes', isVisible: false}
-					],
-					observer: '_dataLayersChanged'//doesnt work
+					]
 				}
-			},
-			_dataLayersChanged: function(){
-				console.log("changed", this.dataLayers)
 			}
 		});
 	</script>
