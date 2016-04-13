@@ -39,7 +39,7 @@
 			},
 
 			observers: [
-				'_x(data.*)'
+				'_addLayers(data.*)'
 			],
 
 			_initMap: function(){
@@ -60,15 +60,18 @@
 
 			},
 			_addLayer: function(layer){
-				if(layer.isVisible){
-					this[layer.id] = new google.maps.KmlLayer(layer.src);
+				//if the layer is visible and not already on the map, add it to the map
+				if(layer.isVisible && !this[layer.id]){
+					console.log("layer is set to be visible, and its not already on the map")
+					this[layer.id] = new google.maps.KmlLayer(layer.src, {preserveViewport:true});
 					this[layer.id].setMap(map);
 				}
-
-			},
-			_x: function(newValue){
-				//these types of observers dont get sent old values like observers attached inside the properties object.
-				console.log("map observer", newValue)
+				//if the layer is set to not be visible, and needs to be removed from the map
+				if(!layer.isVisible && this[layer.id]){
+					console.log("the layer is set to not be visible, and needs to be removed from the map");
+					this[layer.id].setMap(null);
+					this[layer.id] = null;
+				}
 			}
 		});
 	</script>
